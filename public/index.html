@@ -4,9 +4,9 @@
         <title>Starter Collaborative</title>
     </head>
     <body>
-        <h1>Starter Collaborative</h1>
-        <p>A starter project for collaborative resources.</p>
-        <textarea id="text-input" oninput="this.editor.update()" rows="6" cols="60">Type **Markdown** here.</textarea>
+        <h1>Markdown editor</h1>
+        <p>Using a shelf CRDT for synchronising data. Currently just replaces strings. Does not handle disconnects and versions properly and is frail.</p>
+        <textarea id="text-input" oninput="this.editor.update()" rows="6" cols="60" placeholder="Markdown goes here"></textarea>
         <div id="preview"></div>
         <script src="/main.js"></script>
     </body>
