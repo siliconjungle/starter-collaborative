@@ -4,6 +4,7 @@ This project is a stripped back static site which can be used for arbitrary fron
 
 It currently uses a textarea & markdown preview as an example.
 
+## License
 MIT License
 
 Copyright (c) 2022 James Addison
