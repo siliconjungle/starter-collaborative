@@ -10,8 +10,12 @@ const port = 8080
 app.use(express.static('public'))
 
 app.get('*', (req, res, next) => {
+  if (req.path === '/') {
+    res.sendFile(`${__dirname}/public/index.html`)
+  } else {
+    res.sendFile(`${__dirname}/public/resource.html`)
+  }
   console.log(req.path)
-  res.sendFile(`${__dirname}/public/index.html`)
 })
 
 app.listen(port, () => {

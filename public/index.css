@@ -8,4 +8,10 @@ textarea {
   background-color: rgb(27, 32, 43);
   color: rgb(238, 238, 238);
   width: 100%;
+  display: none;
+}
+
+#directory-container {
+  display: flex;
+  flex-direction: column;
 }

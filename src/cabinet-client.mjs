@@ -7,8 +7,8 @@ function CabinetClient (options) {
     const message = JSON.parse(event.data)
     const { type, data } = message
     if (type === 'get') {
-      const { key, value } = data
-      this.cabinet.setShelf(key, value)
+      const { key, patches } = data
+      this.cabinet.applyOps(key, patches)
     }
   }
 
@@ -26,10 +26,10 @@ function CabinetClient (options) {
     }
   }
 
-  this.subscribe = key => {
+  this.subscribe = (key, patches) => {
     this.sendMessage({
       type: 'subscribe',
-      data: { key },
+      data: { key, patches },
     })
   }
 
