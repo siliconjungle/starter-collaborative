@@ -3,32 +3,45 @@ import Cabinet from '@silicon-jungle/cabinet'
 // import Cabinet from './cabinet.js'
 import CabinetClient from './cabinet-client.mjs'
 import cabinetRepository from './cabinet-repository.mjs'
-
-const cabinet = new Cabinet(cabinetRepository)
-const client = new CabinetClient({
-  uri: 'wss://silicon-jungle.herokuapp.com',
-  // uri: 'ws://localhost:3000',
-  cabinet,
-})
-
-const $ = (id) => document.getElementById(id)
-const input = $('text-input')
-const preview = $('preview')
-
-let accessToken = localStorage.getItem('accessToken')
-
-window.addEventListener('keydown', e => {
-  if (e.ctrlKey && e.shiftKey) {
-    if (e.which === 80) {
-      accessToken = prompt('Enter access token')
-      localStorage.setItem('accessToken', accessToken)
-    } else if (e.which === 86) {
-      input.style.display = input.style.display === 'block' ? 'none' : 'block'
-    }
-  }
-})
+import { subscribeToUsersByKey } from './users-store.mjs'
 
 window.addEventListener('load', () => {
+  const dataKey = window.location.pathname
+
+  const $ = (id) => document.getElementById(id)
+  const input = $('text-input')
+  const preview = $('preview')
+  const usersContainer = $('users-container')
+
+  const cabinet = new Cabinet(cabinetRepository)
+  let onlineUsers = []
+
+  const setUsers = users => {
+    onlineUsers = users
+    usersContainer.innerHTML = `${users.length} guests <b>viewing</b> this page.`
+  }
+
+  subscribeToUsersByKey(dataKey, setUsers)
+
+  const client = new CabinetClient({
+    uri: 'wss://silicon-jungle.herokuapp.com',
+    // uri: 'ws://localhost:3000',
+    cabinet,
+  })
+
+  let accessToken = localStorage.getItem('accessToken')
+
+  window.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.shiftKey) {
+      if (e.which === 80) {
+        accessToken = prompt('Enter access token')
+        localStorage.setItem('accessToken', accessToken)
+      } else if (e.which === 86) {
+        input.style.display = input.style.display === 'block' ? 'none' : 'block'
+      }
+    }
+  })
+
   let data = null
   const setData = value => {
     data = value
@@ -40,8 +53,6 @@ window.addEventListener('load', () => {
       editor.setValue(shelf.value)
     }
   }
-
-  const dataKey = window.location.pathname
 
   cabinet.getShelf(dataKey).then(shelf => {
     client.subscribe(dataKey, shelf.history)

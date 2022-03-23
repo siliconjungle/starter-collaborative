@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@silicon-jungle/cabinet": "^2.2.1",
+    "events": "^3.3.0",
     "express": "^4.17.3",
     "markdown": "^0.5.0",
     "path": "^0.12.7",

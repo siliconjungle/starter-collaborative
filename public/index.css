@@ -15,3 +15,7 @@ textarea {
   display: flex;
   flex-direction: column;
 }
+
+#users-container {
+  margin-top: 1em;
+}

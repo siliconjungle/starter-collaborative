@@ -16,7 +16,7 @@
   \***********************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\nconsole.log('_PATHNAME_', window.location.pathname)\n\nconst { pathname } = window.location\n\nif (pathname === '/') {\n  __webpack_require__.e(/*! import() */ \"src_directory_mjs\").then(__webpack_require__.bind(__webpack_require__, /*! ./directory.mjs */ \"./src/directory.mjs\"))\n} else {\n  Promise.all(/*! import() */[__webpack_require__.e(\"vendors-node_modules_markdown_lib_index_js-node_modules_silicon-jungle_cabinet_index_js\"), __webpack_require__.e(\"src_resource_mjs\")]).then(__webpack_require__.bind(__webpack_require__, /*! ./resource.mjs */ \"./src/resource.mjs\"))\n}\n\n\n//# sourceURL=webpack://game-server/./src/index.mjs?");
+eval("__webpack_require__.r(__webpack_exports__);\n// console.log('_PATHNAME_', window.location.pathname)\n\nconst { pathname } = window.location\n\nif (pathname === '/') {\n  __webpack_require__.e(/*! import() */ \"src_directory_mjs\").then(__webpack_require__.bind(__webpack_require__, /*! ./directory.mjs */ \"./src/directory.mjs\"))\n} else {\n  Promise.all(/*! import() */[__webpack_require__.e(\"vendors-node_modules_markdown_lib_index_js-node_modules_silicon-jungle_cabinet_index_js\"), __webpack_require__.e(\"src_resource_mjs\")]).then(__webpack_require__.bind(__webpack_require__, /*! ./resource.mjs */ \"./src/resource.mjs\"))\n}\n\n\n//# sourceURL=webpack://game-server/./src/index.mjs?");
 
 /***/ })
 

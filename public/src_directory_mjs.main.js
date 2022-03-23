@@ -15,7 +15,7 @@
   \***************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\nconst URL = 'http://localhost:3000'\n\nfetch(URL).then((response) => {\n  return response.json()\n}).then((data) => {\n  const $ = (id) => document.getElementById(id)\n  const directoryContainer = $('directory-container')\n  directoryContainer.innerHTML = data.map(route => `<a href=\"${route}\">${route}</a>`).join('')\n}).catch(() => {\n})\n\n\n//# sourceURL=webpack://game-server/./src/directory.mjs?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst URL = 'https://silicon-jungle.herokuapp.com'\n\nfetch(URL).then((response) => {\n  return response.json()\n}).then((data) => {\n  const $ = (id) => document.getElementById(id)\n  const directoryContainer = $('directory-container')\n  directoryContainer.innerHTML = data.map(route => `<a href=\"${route}\">${route}</a>`).join('')\n}).catch(() => {\n})\n\n\n//# sourceURL=webpack://game-server/./src/directory.mjs?");
 
 /***/ })
 
