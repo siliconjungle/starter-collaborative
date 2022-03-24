@@ -58,7 +58,14 @@ function CabinetClient (options) {
       this.connection.send(JSON.stringify(message))
     } else {
       // If a lot of changes happen all offline, this will cause an explosion of updates to all be sent.
-      // This isn't the case if you refresh the page.
+      // Merge messages together
+      if (message.type === 'set') {
+        const existingMessage = this.messages.find(message2 => message.data.key === message2.data.key)
+        if (existingMessage) {
+          existingMessage.data.patches.push(message.data.patches)
+          return
+        }
+      }
       this.messages.push(message)
     }
   }
