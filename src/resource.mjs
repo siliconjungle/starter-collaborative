@@ -69,7 +69,7 @@ window.addEventListener('load', () => {
           accessToken,
           type: 'set',
           data: {
-            cabinet: '/shelves2',
+            cabinet: '/shelves',
             key,
             patches,
           },
