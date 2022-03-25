@@ -11,7 +11,7 @@ import { setUsersByKey, clearStore } from './users-store.mjs'
 
 function CabinetClient (options) {
   this.messages = []
-  this.connection = new WebSocket(options.uri)
+  this.connection = null
   // this.pong = false
   this.cabinet = options.cabinet
 
@@ -26,7 +26,7 @@ function CabinetClient (options) {
   //   setTimeout(this.ping, DISCONNECT_TIMEOUT)
   // }
 
-  this.connection.onmessage = event => {
+  this.onmessage = event => {
     const message = JSON.parse(event.data)
     // if (message === 'pong') {
     //   this.pong = true
@@ -41,7 +41,7 @@ function CabinetClient (options) {
     }
   }
 
-  this.connection.onopen = event => {
+  this.onopen = event => {
     // this.pong = true
     // this.ping()
     this.messages.forEach(message => {
@@ -49,9 +49,24 @@ function CabinetClient (options) {
     })
   }
 
-  this.connection.onclose = event => {
+  this.onclose = event => {
     clearStore()
+    this.createConnection()
+    console.log('_ON_CLOSE_')
   }
+
+  // This is going to cause issues if you're offline on a train or something without internet.
+  // Instead, notify the user when you've disconnected OR have a timer based approach that increases
+  // If the user hasn't disconnected in a while.
+  this.createConnection = () => {
+    console.log('_CREATE_CONNECTION_')
+    this.connection = new WebSocket(options.uri)
+    this.connection.onmessage = this.onmessage
+    this.connection.onopen = this.onopen
+    this.connection.onclose = this.onclose
+  }
+
+  this.createConnection()
 
   this.sendMessage = message => {
     if (this.connection?.readyState === WebSocket.OPEN) {
