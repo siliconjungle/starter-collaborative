@@ -73,14 +73,14 @@ function CabinetClient (options) {
   this.subscribe = (key, patches) => {
     this.sendMessage({
       type: 'subscribe',
-      data: { key, patches },
+      data: { cabinet: '/shelves2', key, patches },
     })
   }
 
   this.unsubscribe = key => {
     this.sendMessage({
       type: 'unsubscribe',
-      data: { key },
+      data: { cabinet: '/shelves2', key },
     })
   }
 
