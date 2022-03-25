@@ -1,4 +1,4 @@
-const URL = 'https://silicon-jungle.herokuapp.com'
+const URL = 'https://silicon-jungle.herokuapp.com/shelves'
 // const URL = 'http://localhost:3000'
 
 fetch(URL).then((response) => {
